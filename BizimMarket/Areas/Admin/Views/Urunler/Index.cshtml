@@ -1,0 +1,39 @@
+﻿@model List<Urun>
+     
+    <h1>Ürün Listesi</h1>
+    <a class="btn btn-primary" asp-controller="Urunler" asp-action="Yeni">Yeni Ürün Ekle</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Fotograf</th>
+                <th>UrunId</th>
+                <th>Ad</th>
+                <th>Fiyat</th>
+                <th>Kategori</th>
+                <th>Güncelle/sil</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="align-middle">
+                    <td><img width="100" src="~/img/@item.ResimYolu" /></td>
+                    <td>@item.UrunId</td>
+                    <td >@item.UrunAdi</td>
+                    <td>@item.Fiyat</td>
+                    <td>@item.Kategori.KategoriAdi</td>
+                    <td>
+                        <a class="btn btn-success" asp-controller="Urunler" asp-area="Admin" asp-action="Duzenle" asp-route-id="@item.UrunId">Güncelle</a>
+                        <form asp-controller="Urunler" asp-action="Sil" method="post" onsubmit="return confirm('Silmek istediğinizden emin misiniz')">
+                            <input type="hidden" name="id" value="@item.UrunId" />
+                            <button class="btn btn-danger mt-1">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+
+            }
+
+        </tbody>
+        
+    </table>

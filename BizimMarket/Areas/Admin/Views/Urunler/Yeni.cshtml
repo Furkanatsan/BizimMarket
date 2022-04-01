@@ -1,0 +1,33 @@
+﻿@model YeniUrunViewModel
+    <h1>Yeni Ürün</h1>
+    <div class="row">
+        <div class="col-6">
+            <form enctype="multipart/form-data" method="post">
+                <div class="m-2">
+                    <label asp-for="UrunAdi">Ad</label>
+                    <input type="text" asp-for="UrunAdi" class="form-control" /><span asp-validation-for="UrunAdi"></span>
+                </div>
+                <div class="m-2">
+                    <label asp-for="Fiyat">Fiyat</label>
+                    <input type="number" asp-for="Fiyat" class="form-control" /><span asp-validation-for="Fiyat"></span>
+                </div>
+                <div class="m-2">
+                    <label asp-for="KategoriId">Kategori</label>
+                    <select asp-items="ViewBag.Kategoriler" asp-for="KategoriId" class="form-select">
+                        <option value="value">
+                            seçiniz
+                        </option>
+                    </select>
+                    <span asp-validation-for="KategoriId"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Resim">Resim</label>
+                    <input type="file" asp-for="Resim" class="form-control" /><span asp-validation-for="Resim"></span>
+                </div>
+                <button class="btn btn-primary">Kaydet</button>
+
+            </form>
+
+        </div>
+    </div>

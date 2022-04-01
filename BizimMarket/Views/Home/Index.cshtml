@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model HomeViewModel
+
+@{ 
+    string aktifOlanKategori(int? kategoriId)
+    {
+        if (Model.KategoriId==kategoriId)
+        {
+            return "active";
+        }
+        else
+        {
+            return "";
+        }
+    }
+
+}
+
+
+
+<div class="row">
+    <div class="col-md-3">
+        <h4>Kategoriler</h4>
+        <div class="list-group">
+            <a asp-action="Index" class="list-group-item @aktifOlanKategori(null)" >Tüm Ürünler</a>
+            @foreach (var item in Model.Kategoriler)
+            {
+                <a asp-action="Index" asp-route-kategoriId="@item.KategoriId" class="list-group-item @aktifOlanKategori(item.KategoriId)"> @item.KategoriAdi</a>
+            }
+        </div>
+
+    </div>
+    <div class="col-md-9">
+        <h4>Ürünler</h4>
+        <div class="row">
+            @foreach (var item in Model.Urunler )
+            {
+                <div class="col-md-4 col-sm-3 border-info border  ">
+                    <img class="w-100" src="/img/@item.ResimYolu" alt="@item.UrunAdi" />
+                    <p>@item.UrunAdi</p>
+                    <p>@item.Fiyat TL</p>
+                </div>
+
+            }
+        </div>
+
+    </div>
+</div>
